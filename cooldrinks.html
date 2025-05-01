@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooldrinks - Food Munch</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        let cart = [];
+
+        // Load cart from local storage when page loads
+        function loadCart() {
+            const storedCart = localStorage.getItem("cart");
+            if (storedCart) {
+                cart = JSON.parse(storedCart);
+                updateCart();
+            }
+        }
+
+        // Save cart to local storage
+        function saveCart() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        function addToCart(productName, price, buttonElement) {
+            let existingProduct = cart.find(item => item.name === productName);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ name: productName, price: price, quantity: 1 });
+            }
+
+            saveCart();
+            updateCart();
+
+            // Visual feedback
+            const originalText = buttonElement.innerHTML;
+            buttonElement.innerHTML = '<i class="fas fa-check"></i> Added!';
+            buttonElement.classList.add('btn-success-added'); // Optional: Add a class for temporary styling
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;
+                buttonElement.classList.remove('btn-success-added');
+            }, 1500); // Revert after 1.5 seconds
+        }
+
+
+        function removeFromCart(productName) {
+            let productIndex = cart.findIndex(item => item.name === productName);
+
+            if (productIndex !== -1) {
+                if (cart[productIndex].quantity > 1) {
+                    cart[productIndex].quantity -= 1;
+                } else {
+                    cart.splice(productIndex, 1);
+                }
+                saveCart();
+                updateCart();
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById("cart-list");
+            const totalAmountSpan = document.getElementById("total-amount");
+            const cartSection = document.getElementById('cart-section');
+            cartList.innerHTML = ""; // Clear previous items
+
+            let total = 0;
+
+            if (cart.length === 0) {
+                 cartSection.style.display = 'none'; // Hide cart section if empty
+                 return;
+            }
+
+            cartSection.style.display = 'block'; // Show cart section if not empty
+
+
+            cart.forEach(item => {
+                const li = document.createElement("li");
+                li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', 'cart-item-li'); // Added classes for styling
+
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                li.innerHTML = `
+                    <span>${item.name} - ₹${item.price.toFixed(2)} x ${item.quantity} = <b>₹${itemTotal.toFixed(2)}</b></span>
+                `; // Using span for better control, added .toFixed(2) for currency format
+
+                const removeButton = document.createElement("button");
+                removeButton.innerHTML = '<i class="fas fa-times"></i>'; // Using icon
+                removeButton.classList.add("btn", "btn-sm", "btn-outline-danger", "remove-btn"); // Bootstrap button classes
+                removeButton.title = `Remove ${item.name}`; // Tooltip
+                removeButton.onclick = () => removeFromCart(item.name);
+
+                li.appendChild(removeButton);
+                cartList.appendChild(li);
+            });
+
+            totalAmountSpan.innerText = total.toFixed(2); // Format total amount
+        }
+
+        // Load cart when the page loads
+        document.addEventListener("DOMContentLoaded", loadCart);
+
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Tektur", sans-serif;
+            background-color: #f8f9fa; /* Light background for the page */
+        }
+        .explore-menu-section {
+            background-color: white;
+            padding-top: 3rem; /* More padding */
+            padding-bottom: 3rem;
+        }
+
+        .menu-section-heading {
+            color: #183b56;
+            font-family: "Roboto", sans-serif;
+            font-size: 2rem; /* Responsive font size */
+            font-weight: 700;
+            margin-bottom: 2.5rem; /* More space below heading */
+            text-align: center;
+        }
+
+        .menu-item-card {
+            border-radius: 16px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure image corners are rounded */
+            height: 100%; /* Equal height cards */
+            display: flex; /* Use flex for better content alignment */
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item-image {
+            border-top-left-radius: 16px; /* Match card radius */
+            border-top-right-radius: 16px;
+            height: 220px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensure image covers area well */
+            width: 100%;
+        }
+
+        .menu-item-content { /* Container for text below image */
+             padding: 1.25rem; /* More padding */
+             flex-grow: 1; /* Allow content to fill space */
+             display: flex;
+             flex-direction: column;
+             text-align: center; /* Center align text */
+        }
+
+        .menu-card-title {
+            color: #323f4b;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.2rem; /* Slightly larger title */
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-price { /* Style the price */
+            color: #5a7184;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #007bff; /* Highlight price color */
+        }
+
+        .btn-add-to-cart {
+            margin-top: auto; /* Push button to bottom */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%; /* Make button full width of content area */
+        }
+        .btn-add-to-cart:hover {
+            transform: scale(1.03);
+        }
+        .btn-success-added { /* Style for button after adding */
+             background-color: #218838 !important; /* Darker green */
+             border-color: #1e7e34 !important;
+        }
+
+        /* Cart Styling */
+        #cart-section {
+            background-color: #e9ecef; /* Light grey background */
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #cart-section h2 {
+            font-family: "Roboto", sans-serif;
+            color: #183b56;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        #cart-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+        .cart-item-li {
+            background-color: #fff;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 5px;
+            font-family: "Roboto", sans-serif;
+            font-size: 0.95rem;
+        }
+        .cart-item-li span {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+        .remove-btn {
+            padding: 0.2rem 0.5rem; /* Smaller padding */
+            line-height: 1; /* Adjust line height */
+            font-size: 0.8rem; /* Smaller icon */
+            margin-left: 10px;
+        }
+
+        #cart-total {
+            font-family: "Roboto", sans-serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #183b56;
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+        #cart-total span {
+            color: #28a745; /* Green color for total */
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between; /* Space out buttons */
+            gap: 1rem; /* Add gap between buttons */
+        }
+        .cart-actions .btn {
+            flex-grow: 1; /* Make buttons take equal space */
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        #checkout-btn {
+             transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+         #checkout-btn:hover {
+             transform: scale(1.03);
+         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 767px) {
+            .menu-section-heading {
+                font-size: 1.8rem;
+            }
+            .menu-item-image {
+                height: 180px;
+            }
+            .cart-actions {
+                flex-direction: column; /* Stack buttons vertically */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="explore-menu-section pt-5 pb-5" id="exploreMenuSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="menu-section-heading">Cool Drinks</h1>
+                </div>
+
+                <!-- Product Items -->
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-coffee-cartoon-illustration_52683-127644.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Thumps up" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">Thumps Up</h1>
+                            <p class="menu-item-price">₹45/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('Thumps up', 45, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-photo/bottom-view-blonde-boy-holding-beer_23-2148194060.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="sprit" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">sprite</h1>
+                            <p class="menu-item-price">₹20/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('sprite', 20, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-soda-cartoon-illustration_23-2150906483.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="pepsi" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">pepsi</h1>
+                            <p class="menu-item-price">₹48/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('pepsi', 48, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-soda-cartoon-illustration_23-2150885008.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Monster" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">Monster 100</h1>
+                            <p class="menu-item-price">₹119/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('Monster 100', 119, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-soda-cartoon-illustration_23-2150864482.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Mountain Dew" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">Mountain Dew</h1>
+                            <p class="menu-item-price">₹20/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('Mountain Dew', 20, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-photo/delicious-orange-juice-glass_23-2150857836.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid" alt="Marinda" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">Marinda</h1>                  
+                            <p class="menu-item-price">₹20/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('Marinda', 20, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-champagne-bottle-cartoon-illustration_23-2150802665.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="7 Up" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">7 Up</h1>
+                            <p class="menu-item-price">₹50/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('7 up', 50, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="shadow menu-item-card">
+                        <img src="https://img.freepik.com/free-vector/realistic-energy-drink-advertisement_23-2148150916.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Red Bull" class="menu-item-image" />
+                        <div class="menu-item-content">
+                            <h1 class="menu-card-title">Red Bull</h1>
+                            <p class="menu-item-price">₹89/-</p>
+                            <button  class="btn btn-success btn-add-to-cart"  onclick="addToCart('Red Bull', 89, this)">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Row -->
+
+            <!-- Shopping Cart Section -->
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div id="cart-section" style="display: none;"> <!-- Initially hidden -->
+                        <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+                        <ul id="cart-list" class="list-group">
+                            <!-- Cart items will be dynamically added here -->
+                        </ul>
+                        <div id="cart-total">
+                            Total Amount: ₹<span id="total-amount">0.00</span>
+                        </div>
+                        <div class="cart-actions">
+                            <button id="clear-cart" class="btn btn-outline-danger" onclick="clearCart()">
+                                <i class="fas fa-trash-alt"></i> Clear Cart
+                            </button>
+                            <a href="scan&pay.html" class="btn btn-primary" id="checkout-btn"> <!-- Changed to btn-primary -->
+                                <i class="fas fa-credit-card"></i> Proceed to Checkout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End Container -->
+    </div> <!-- End Section -->
+
+</body>
+</html>

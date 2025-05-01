@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Customer Orders</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container py-5">
+    <h1>📦 Customer Orders</h1>
+    <div id="orders-container"></div>
+  </div>
+
+  <script>
+    async function loadOrders() {
+      try {
+        const response = await fetch("fetch_orders.php");
+        const orders = await response.json();
+        const container = document.getElementById("orders-container");
+
+        container.innerHTML = "";
+
+        if (orders.length === 0) {
+          container.innerHTML = "<p>No orders yet.</p>";
+          return;
+        }
+
+        orders.forEach(order => {
+          const orderDiv = document.createElement("div");
+          orderDiv.className = "card mb-4";
+
+          const itemsHtml = order.products.map(item =>
+            `<li>${item.name} - ₹${item.price} x ${item.quantity} = ₹${item.total}</li>`
+          ).join("");
+
+          orderDiv.innerHTML = `
+            <div class="card-body">
+              <h5 class="card-title">Order ID: ${order.id}</h5>
+              <p class="card-text"><strong>Email:</strong> ${order.email}</p>
+              <p class="card-text"><strong>Date:</strong> ${order.timestamp}</p>
+              <p class="card-text"><strong>UTR ID:</strong> ${order.utr_id}</p>
+              <ul>${itemsHtml}</ul>
+              <p class="card-text"><strong>Total:</strong> ₹${order.total_price}</p>
+              <a href="verify_order.php?order_id=${order.id}" class="btn btn-success">Review & Accept</a>
+            </div>
+          `;
+
+          container.appendChild(orderDiv);
+        });
+      } catch (err) {
+        console.error("Failed to load orders", err);
+        document.getElementById("orders-container").innerHTML = "<p>Error loading orders.</p>";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadOrders);
+  </script>
+</body>
+</html>

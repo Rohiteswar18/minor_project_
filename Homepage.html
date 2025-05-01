@@ -1,0 +1,1254 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous">
+        let counter = 1;
+        function increaseCounter() {
+            counter++;
+            document.getElementById("counter").textContent = counter;
+        }
+        function decreaseCounter() {
+            if (counter > 0) {
+                counter--;
+                document.getElementById("counter").textContent = counter;
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+        *{
+  font-family: "Tektur", sans-serif;
+}
+        .counter-container {
+            display: flex;
+            align-items: center;
+            background: #91b1da;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            width: fit-content;
+        }
+        .counter-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: green;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        .counter-value {
+            font-size: 24px;
+            color: green;
+            margin: 0 10px;
+        }
+.wcu-section {
+    background-color: #f9fbfe;
+}
+.food-munch-logo{
+    height: 100px;
+    width: 100px;
+}
+
+.wcu-section-heading {
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.wcu-section-description {
+    color: #5a7184;
+    font-family: "Roboto";
+    font-size: 16px;
+}
+
+.wcu-card {
+    text-align: center;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e5eaf4;
+    border-radius: 16px;
+}
+
+.wcu-card-image {
+    width: 87px;
+    height: 90px;
+}
+
+.wcu-card-title {
+    color: #323f4b;
+    font-family: "Roboto";
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.wcu-card-description {
+    color: #7b8794;
+    font-family: "Roboto";
+    font-size: 16px;
+}
+
+.offers {
+    color: #323f4b;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.explore-menu-section {
+    background-color: white;
+}
+
+.menu-section-heading {
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.menu-item-image {
+    border-radius: 16px;
+}
+
+.menu-card-title {
+    color: #323f4b;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 24px;
+}
+
+.menu-item-link {
+    color: #d0b200;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.menu-item-card {
+    border-radius: 16px;
+}
+
+.healthy-food-section {
+    background-color: #f9fbfe;
+}
+
+.healthy-food-section-img {
+    width: 270px;
+}
+
+.healthy-food-section-heading {
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.healthy-food-section-description {
+    color: #5a7184;
+    font-family: "Roboto";
+    font-size: 16px;
+}
+
+.delivery-and-payment-section {
+    background-color: white;
+}
+
+.delivery-and-payment-section-img {
+    width: 270px;
+}
+
+.delivery-and-payment-section-heading {
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.delivery-and-payment-section-description {
+    color: #5a7184;
+    font-family: "Roboto";
+    font-size: 16px;
+}
+
+.payment-card-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 28px;
+}
+
+.thanking-customers-section {
+    background-color: #d0b2001a;
+}
+
+.thanking-customers-section-heading {
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.thanking-customers-section-description {
+    color: #5a7184;
+    font-family: "Roboto";
+    font-size: 16px;
+}
+
+.thanking-customers-section-img {
+    width: 270px;
+    margin-bottom: 20px;
+}
+
+.follow-us-section {
+    background-color: white;
+}
+
+.follow-us-section-heading {
+    text-align: center;
+    color: #183b56;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.follow-us-icon-container {
+    background-color: #faf7e8;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin: 15px;
+    padding-top: 22px;
+    padding-bottom: 14px;
+    padding-right: 16px;
+    padding-left: 22px;
+}
+
+.icon {
+    color: #d0b200;
+    font-size: 35px;
+}
+
+.footer-section {
+    background-color: #0fcedf;
+}
+
+.footer-section-mail-id {
+    color: #959ead;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.footer-section-address {
+    color: #959ead;
+    font-family: "Roboto";
+    font-size: 14px;
+}
+.bg-homepage{
+    background-color: #0c8ee4;
+    background-size: cover;
+}
+.custom-button{
+    background-color: #1a80d8;
+    color: #080c09;
+    border-radius: 21px;
+}
+.banner-section-bg-container{
+    background-image: url("https://img.freepik.com/free-photo/buying-food-grocery-store_342744-1129.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid");
+    height: 80vh;
+    background-size: cover;
+    color: #ffffff;
+}
+span{
+    font-weight: bolder;
+    color: #158cd0;
+}
+.foter{
+    font-weight: bolder;
+    color: #158cd0;
+}
+.banner-heading{
+    color: #5492c8;
+}
+.banner-caption{
+    color: #1652b3;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.freepik.com/256/12709/12709809.png?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid" class="food-munch-logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link active" id="navItem1" href="#wcuSection">
+                        Why Choose Us?
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a class="nav-link" href="#exploreMenuSection" id="navItem2">Grocery</a>
+                    <a class="nav-link" href="#deliveryPaymentSection" id="navItem3">Delivery & Payment</a>
+                    <a class="nav-link" href="#followUsSection" id="navItem4">Follow Us</a>
+                    <a class="nav-link" href="MyOrders.php">My Orders</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <marquee behavior="scroll" direction="left" bgcolor="orange" height="30px" scrollamount="20" hspace="100px" vspace="50px" 
+    onmouseover="this.stop()" onmouseout="this.start()">
+        <mark><big><b>Flat <span>50%</span> off on Your First Order</b></big></mark>
+    </marquee>
+    <div class="banner-section-bg-container d-flex justify-content-center flex-column ">
+        <div class="text-center">
+            <h1 class="banner-heading mb-3">Get Delicious Food Anytime at your place</h1>
+            <p class="banner-caption mb-4">Eat Smart & Healthy</p>
+            <button class="custom-button" onclick="display('exploreMenuSection')">Buy Know</button>
+            <button class="custom-outline-button">Order Now</button>
+        </div>
+    </div>
+    <div class="wcu-section pt-5 pb-5 " id="wcuSection" >
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="wcu-section-heading">Why Choose Us?</h1>
+                    <p class="wcu-section-description">
+                        We use both original recipes and classic versions of famous food
+                        items.
+                    </p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="wcu-card p-3 mb-3">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/food-serve.png" class="wcu-card-image" />
+                        <h1 class="wcu-card-title mt-3">Food Service</h1>
+                        <p class="wcu-card-description">
+                            Experience fine dining at the comfort of your home. All our
+                            orders are carefully packed and arranged to give you the nothing
+                            less than perfect.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="wcu-card p-3 mb-3">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/fruits-img.png" class="wcu-card-image" />
+                        <h1 class="wcu-card-title mt-3">Fresh Food</h1>
+                        <p class="wcu-card-description">
+                            The Fresh Food group provides fresh-cut fruits and vegetables
+                            directly picked from our partner farms and farm houses so that
+                            you always get them tree to plate.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="wcu-card p-3 mb-3">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/offers-img.png" class="wcu-card-image" />
+                        <h1 class="wcu-card-title mt-3">Best Offers</h1>
+                        <p class="wcu-card-description">
+                            Food Coupons & Offers upto
+                            <span class="offers">50% OFF</span>
+                            and Exclusive Promo Codes on All Online Food Orders.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="explore-menu-section pt-5 pb-5 " id="exploreMenuSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="menu-section-heading">Grocery</h1>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="shadow menu-item-card p-3 mb-3">
+                        <img src="https://img.freepik.com/free-vector/realistic-natural-rustic-milk-package-ad-poster-with-milk-splashes-glass-camomile-field-with-text-illustration_1284-29515.jpg?semt=ais_hybrid" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Milk products </h1>
+                        <p>36/-</p>
+                        <a href="milkproducts.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="shadow menu-item-card p-3 mb-3">
+                        <img src="https://img.freepik.com/free-photo/front-view-blue-cool-lemonade-with-ice-blue-background-fruit-water-cold-cocktail-drink-color-juice_140725-156776.jpg?ga=GA1.1.1986246025.1730302276&semt=ais_hybrid&w=740" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">cool drinks</h1>
+                        <p>starts at 20/-</p>
+                        <a href="cooldrinks.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6YZI4BP_otZ5Nsw3GZ-P_92oc_GXfTV_E5g&s" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Soaps</h1>
+                        <p>45/-</p>
+                        <a href="soapproducts.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://img.freepik.com/free-photo/lifestyle-food-gourmet-comida-gastronomy_1350-46.jpg?t=st=1738135659~exp=1738139259~hmac=1871dbcdd6ca349d9cd2340a7edeaaac997593235343256d08519d932b70d0fd&w=1060" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">mixtures</h1>
+                        <p>strats at 35/-</p>
+                        <a href="mixtureproducts.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://img.freepik.com/free-photo/modern-stationary-collection-arrangement_23-2149309682.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Electronics</h1>
+                        <p> starts from 100/-</p>
+                        <a href="electronics.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://img.freepik.com/free-vector/laundry-cosmetics-sale-realistic-advertisement_52683-16435.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Beauty</h1>
+                        <p>starts from 149/-</p>
+                        <a href="Beautyproducts.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://img.freepik.com/free-photo/view-modern-air-fryer-with-food_23-2151737029.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Home Appliances</h1>
+                        <p>Stats from 100/-</p>
+                        <a href="Homeappliances.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="menu-item-card shadow p-3 mb-3">
+                        <img src="https://img.freepik.com/free-photo/child-blue-propeller-toy-airplane-spinning-indoors-generated-by-ai_188544-10224.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770" class="menu-item-image w-100" />
+                        <h1 class="menu-card-title">Toys</h1>
+                        <p>Starts from Rupess 99/-</p>
+                        <a href="toyproducts.html" class="menu-item-link">
+                            View All
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="#d0b200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="healthy-food-section pt-5 pb-5  ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-5">
+                    <div class="text-center">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/healthy-food-plate-img.png" class="healthy-food-section-img" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-7">
+                    <h1 class="healthy-food-section-heading">
+                        Fresh, Healthy, Organic, Delicious Fruits
+                    </h1>
+                    <p class="healthy-food-section-description">
+                        Say no to harmful chemicals and go fully organic with our range of
+                        fresh fruits and veggies. Pamper your body and your senses with
+                        the true and unadulterated gifts from mother nature. with the true
+                        and unadulterated gifts from mother nature.
+                    </p>
+                    <button class="custom-button">Watch Video</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="delivery-and-payment-section pt-5 pb-5 " id="deliveryPaymentSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-5 order-1 order-md-2">
+                    <div class="text-center">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/delivery-payment-section-img.png" class="delivery-and-payment-section-img" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 order-2 order-md-1">
+                    <h1 class="delivery-and-payment-section-heading">
+                        Delivery and Payment
+                    </h1>
+                    <p class="delivery-and-payment-section-description">
+                        Enjoy hassle-free payment with the plenitude of payment options
+                        available for you. Get live tracking and locate your food on a
+                        live map. It's quite a sight to see your food arrive to your door.
+                        Plus, you get a 5% discount on every order every time you pay
+                        online.
+                    </p>
+                    <button href="#exploreMenuSection" class="custom-button btn">Order Now</button>
+                    <div class="mt-3">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/visa-card-img.png" class="payment-card-img" />
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/master-card-img.png" class="payment-card-img" />
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/paypal-card-img.png" class="payment-card-img" />
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/american-express-img.png" class="payment-card-img" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-section pt-5 pb-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="https://cdn-icons-png.freepik.com/256/12709/12709809.png?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid" class="food-munch-logo" />
+                    <h1 class="footer-section-mail-id foter">orderfood@foodmunch.com</h1>
+                    <p class="footer-section-address foter">
+                        123 Ayur Vigyan Nagar, New Delhi, India.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Munch - Grocery & Food Delivery</title> 
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"> {/* Consolidated Font Imports */}
+
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script> {/* Removed inline JS */}
+
+    <style>
+        /* Import other fonts if needed, Roboto is included above */
+        /* @import url('...'); */
+
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        body {
+             /* Apply Tektur globally, override with Roboto where needed */
+             font-family: "Tektur", sans-serif;
+             overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* --- Navbar & Logo --- */
+        .food-munch-logo {
+            height: 60px; /* Adjusted size */
+            width: auto;
+        }
+        .navbar {
+            background-color: #ffffff; /* Give navbar a background */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar-nav .nav-link {
+            color: #5a7184 !important; /* Use !important carefully */
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #158cd0 !important;
+        }
+
+        /* --- Marquee --- */
+        .discount-marquee {
+            background-color: orange;
+            color: #000;
+            padding: 8px 0;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px; /* Space from navbar */
+            margin-bottom: 10px; /* Space before banner */
+        }
+        .discount-marquee mark {
+            background-color: transparent; /* Remove default mark background */
+            color: #fff; /* Make text white */
+        }
+        .discount-marquee span {
+            color: #ffff00; /* Highlight color for percentage */
+            font-weight: bolder;
+        }
+
+        /* --- Banner --- */
+        .banner-section-bg-container {
+            background-image: url("https://img.freepik.com/free-photo/buying-food-grocery-store_342744-1129.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid");
+            min-height: 85vh; /* Use min-height */
+            background-size: cover;
+            background-position: center center;
+            color: #ffffff;
+            position: relative; /* Needed for overlay */
+            display: flex; /* Keep flex properties */
+            justify-content: center;
+            align-items: center; /* Center content vertically */
+            text-align: center;
+        }
+        .banner-section-bg-container::before { /* Add overlay */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 1;
+        }
+        .banner-content { /* Container for text/buttons */
+            position: relative; /* Ensure content is above overlay */
+            z-index: 2;
+            padding: 20px;
+        }
+        .banner-heading {
+            color: #ffffff; /* White text on overlay */
+            font-size: 2.5rem; /* Responsive font size */
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Text shadow for readability */
+        }
+        .banner-caption {
+            color: #f0f0f0; /* Lighter white */
+            font-size: 1.2rem;
+            font-family: "Roboto", sans-serif;
+            margin-bottom: 30px; /* Increased spacing */
+        }
+        .custom-button, .custom-outline-button { /* Shared button styles */
+            border-radius: 25px; /* More rounded */
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent; /* Base border */
+            cursor: pointer;
+        }
+        .custom-button {
+            background-color: #1a80d8;
+            color: #ffffff;
+        }
+        .custom-button:hover {
+            background-color: #136abf;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .custom-outline-button { /* Define outline button style */
+            background-color: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+        .custom-outline-button:hover {
+            background-color: #ffffff;
+            color: #1a80d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Why Choose Us Section --- */
+        .wcu-section {
+            background-color: #f9fbfe;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .wcu-section-heading {
+            color: #183b56;
+            font-family: "Roboto", sans-serif;
+            font-size: 2rem; /* Slightly larger */
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .wcu-section-description {
+            color: #5a7184;
+            font-family: "Roboto", sans-serif;
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+        .wcu-card {
+            text-align: center;
+            background-color: white;
+            border: 1px solid #e5eaf4;
+            border-radius: 16px;
+            padding: 30px 20px; /* More padding */
+            margin-bottom: 30px; /* Ensure spacing on mobile */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* For hover effect */
+            height: 100%; /* Make cards in a row equal height */
+        }
+        .wcu-card:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .wcu-card-image {
+            width: 80px; /* Slightly smaller */
+            height: 80px;
+            margin-bottom: 20px; /* Space below image */
+        }
+        .wcu-card-title {
+            color: #323f4b;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .wcu-card-description {
+            color: #7b8794;
+            font-family: "Roboto", sans-serif;
+            font-size: 0.95rem; /* Slightly smaller */
+            line-height: 1.6;
+        }
+        .offers {
+            color: #d0b200; /* Use the gold color */
+            font-style: normal; /* Remove italic */
+            font-weight: 700; /* Bolder */
+        }
+
+        /* --- Explore Menu / Grocery Section --- */
+        .explore-menu-section {
+            background-color: white;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .menu-section-heading {
+            color: #183b56;
+            font-family: "Roboto", sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .menu-item-card {
+            border-radius: 16px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure image corners are rounded */
+            height: 100%; /* Equal height cards */
+            display: flex; /* Use flex for better content alignment */
+            flex-direction: column;
+        }
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+        .menu-item-image {
+            border-top-left-radius: 16px; /* Match card radius */
+            border-top-right-radius: 16px;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensure image covers area */
+        }
+        .menu-item-content { /* Container for text below image */
+             padding: 20px;
+             flex-grow: 1; /* Allow content to fill space */
+             display: flex;
+             flex-direction: column;
+        }
+        .menu-card-title {
+            color: #323f4b;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: 0; /* Remove default margin */
+            margin-bottom: 10px;
+        }
+        .menu-item-price { /* Style the price */
+            color: #5a7184;
+            font-family: "Roboto", sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .menu-item-link {
+            color: #d0b200;
+            font-family: "Roboto", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none; /* Remove underline */
+            margin-top: auto; /* Push link to bottom */
+            transition: color 0.3s ease;
+        }
+        .menu-item-link:hover {
+            color: #b39700; /* Darker gold on hover */
+        }
+        .menu-item-link svg {
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        /* --- Healthy Food Section --- */
+        .healthy-food-section {
+            background-color: #f9fbfe;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .healthy-food-section-img {
+            max-width: 100%; /* Make image responsive */
+            height: auto;
+            border-radius: 8px; /* Optional: round corners */
+        }
+        .healthy-food-section-heading {
+            color: #183b56;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.8rem; /* Adjusted size */
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .healthy-food-section-description {
+            color: #5a7184;
+            font-family: "Roboto", sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* --- Delivery and Payment Section --- */
+        .delivery-and-payment-section {
+            background-color: white;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .delivery-and-payment-section-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .delivery-and-payment-section-heading {
+            color: #183b56;
+            font-family: "Roboto", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .delivery-and-payment-section-description {
+            color: #5a7184;
+            font-family: "Roboto", sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .payment-card-img {
+            width: 45px; /* Slightly smaller */
+            height: auto;
+            margin-right: 15px; /* Adjust spacing */
+            margin-bottom: 10px; /* Spacing for smaller screens */
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .payment-card-img:hover {
+            opacity: 1;
+        }
+
+        /* --- Footer Section --- */
+        .footer-section {
+            background-color: #183b56; /* Darker, more professional footer */
+            color: #bdc3c7; /* Lighter text color for contrast */
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .footer-section .food-munch-logo {
+            height: 70px; /* Adjust footer logo size */
+            margin-bottom: 20px;
+        }
+        .footer-section-mail-id,
+        .footer-section-address {
+            color: #ecf0f1; /* Even lighter for key info */
+            font-family: "Roboto", sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .footer-section-mail-id {
+            font-weight: 500;
+        }
+        .footer-section-address {
+            font-size: 0.9rem;
+            color: #bdc3c7; /* Slightly dimmer for address */
+        }
+        /* Remove the .foter class styles as they are now integrated */
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 767px) {
+            .banner-heading {
+                font-size: 2rem;
+            }
+            .banner-caption {
+                font-size: 1rem;
+            }
+            .wcu-section-heading, .menu-section-heading,
+            .healthy-food-section-heading, .delivery-and-payment-section-heading {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            .wcu-section-description {
+                 text-align: center;
+            }
+            .healthy-food-section .text-center,
+            .delivery-and-payment-section .text-center {
+                margin-bottom: 30px;
+            }
+            .payment-card-img {
+                margin-right: 10px;
+            }
+            .footer-section {
+                text-align: center;
+            }
+        }
+         @media (max-width: 575px) {
+             .food-munch-logo {
+                 height: 50px;
+             }
+             .custom-button, .custom-outline-button {
+                 padding: 8px 20px;
+                 font-size: 0.9rem;
+                 width: 80%; /* Make buttons wider on small screens */
+                 display: block;
+                 margin-left: auto;
+                 margin-right: auto;
+             }
+             .menu-item-image {
+                 height: 180px; /* Adjust image height */
+             }
+         }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top"> 
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.freepik.com/256/12709/12709809.png?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid" alt="Food Munch Logo" class="food-munch-logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                   
+                    <a class="nav-link active" href="#wcuSection">Why Choose Us?</a>
+                    <a class="nav-link" href="#exploreMenuSection">Grocery</a>
+                    <a class="nav-link" href="#deliveryPaymentSection">Delivery & Payment</a>
+                    <a class="nav-link" href="#followUsSection">Follow Us</a>  
+                    <a class="nav-link" href="MyOrders.php">My Orders</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div style="padding-top: 80px;"> 
+       
+
+        <marquee class="discount-marquee" behavior="scroll" direction="left" scrollamount="15" onmouseover="this.stop()" onmouseout="this.start()">
+            <mark>Flat <span>50%</span> off on Your First Order</mark>
+        </marquee>
+
+        <div class="banner-section-bg-container">
+            <div class="banner-content fade-in-section"> 
+                <h1 class="banner-heading mb-3">Get Delicious Food Anytime at your place</h1>
+                <p class="banner-caption mb-4">Eat Smart & Healthy</p>
+                
+                <button class="custom-button" onclick="scrollToSection('exploreMenuSection')">Buy Now</button>
+                <button class="custom-outline-button" onclick="scrollToSection('exploreMenuSection')">Order Now</button>
+            </div>
+        </div>
+
+        <div class="wcu-section fade-in-section" id="wcuSection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center"> 
+                        <h1 class="wcu-section-heading">Why Choose Us?</h1>
+                        <p class="wcu-section-description">
+                            We use both original recipes and classic versions of famous food items.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4 d-flex"> 
+                        <div class="wcu-card">
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/food-serve.png" alt="Food Service Icon" class="wcu-card-image" />
+                            <h1 class="wcu-card-title mt-3">Food Service</h1>
+                            <p class="wcu-card-description">
+                                Experience fine dining at the comfort of your home. All our orders are carefully packed and arranged to give you nothing less than perfect.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex">
+                        <div class="wcu-card">
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/fruits-img.png" alt="Fresh Food Icon" class="wcu-card-image" />
+                            <h1 class="wcu-card-title mt-3">Fresh Food</h1>
+                            <p class="wcu-card-description">
+                                The Fresh Food group provides fresh-cut fruits and vegetables directly picked from our partner farms and farm houses so that you always get them tree to plate.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex">
+                        <div class="wcu-card">
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/offers-img.png" alt="Best Offers Icon" class="wcu-card-image" />
+                            <h1 class="wcu-card-title mt-3">Best Offers</h1>
+                            <p class="wcu-card-description">
+                                Food Coupons & Offers up to <span class="offers">50% OFF</span> and Exclusive Promo Codes on All Online Food Orders.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="explore-menu-section fade-in-section" id="exploreMenuSection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center"> 
+                        <h1 class="menu-section-heading">Grocery</h1>
+                    </div>
+                </div>
+                <div class="row"> 
+                    
+                    <div class="col-12 col-md-6 col-lg-3 d-flex"> 
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-vector/realistic-natural-rustic-milk-package-ad-poster-with-milk-splashes-glass-camomile-field-with-text-illustration_1284-29515.jpg?semt=ais_hybrid" alt="Milk Products" class="menu-item-image img-fluid" /> 
+                            <div class="menu-item-content"> 
+                                <h1 class="menu-card-title">Milk products</h1>
+                                <p class="menu-item-price">₹36/-</p> 
+                                <a href="milkproducts.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-photo/front-view-blue-cool-lemonade-with-ice-blue-background-fruit-water-cold-cocktail-drink-color-juice_140725-156776.jpg?ga=GA1.1.1986246025.1730302276&semt=ais_hybrid&w=740" alt="Cool Drinks" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Cool Drinks</h1>
+                                <p class="menu-item-price">Starts at ₹20/-</p>
+                                <a href="cooldrinks.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6YZI4BP_otZ5Nsw3GZ-P_92oc_GXfTV_E5g&s" alt="Soaps" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Soaps</h1>
+                                <p class="menu-item-price">₹45/-</p>
+                                <a href="soapproducts.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-photo/lifestyle-food-gourmet-comida-gastronomy_1350-46.jpg?t=st=1738135659~exp=1738139259~hmac=1871dbcdd6ca349d9cd2340a7edeaaac997593235343256d08519d932b70d0fd&w=1060" alt="Mixtures" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Mixtures</h1>
+                                <p class="menu-item-price">Starts at ₹35/-</p>
+                                <a href="mixtureproducts.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-photo/modern-stationary-collection-arrangement_23-2149309682.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Electronics" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Electronics</h1>
+                                <p class="menu-item-price">Starts from ₹100/-</p>
+                                <a href="electronics.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-vector/laundry-cosmetics-sale-realistic-advertisement_52683-16435.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Beauty Products" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Beauty</h1>
+                                <p class="menu-item-price">Starts from ₹149/-</p>
+                                <a href="Beautyproducts.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-photo/view-modern-air-fryer-with-food_23-2151737029.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_authors_boost" alt="Home Appliances" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Home Appliances</h1>
+                                <p class="menu-item-price">Starts from ₹100/-</p>
+                                <a href="Homeappliances.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 d-flex">
+                        <div class="menu-item-card shadow">
+                            <img src="https://img.freepik.com/free-photo/child-blue-propeller-toy-airplane-spinning-indoors-generated-by-ai_188544-10224.jpg?uid=R185085967&ga=GA1.1.1334335634.1738134770" alt="Toys" class="menu-item-image img-fluid" />
+                            <div class="menu-item-content">
+                                <h1 class="menu-card-title">Toys</h1>
+                                <p class="menu-item-price">Starts from ₹99/-</p>
+                                <a href="toyproducts.html" class="menu-item-link">
+                                    View All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="healthy-food-section pt-5 pb-5 fade-in-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-5 text-center">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/healthy-food-plate-img.png" alt="Healthy Food Plate" class="healthy-food-section-img img-fluid" /> {/* Added img-fluid */}
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <h1 class="healthy-food-section-heading">
+                            Fresh, Healthy, Organic, Delicious Fruits
+                        </h1>
+                        <p class="healthy-food-section-description">
+                            Say no to harmful chemicals and go fully organic with our range of fresh fruits and veggies. Pamper your body and your senses with the true and unadulterated gifts from mother nature.
+                        </p>
+                        <button class="custom-button">Watch Video</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="delivery-and-payment-section pt-5 pb-5 fade-in-section" id="deliveryPaymentSection">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-5 order-1 order-md-2 text-center">
+                        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/delivery-payment-section-img.png" alt="Delivery and Payment Illustration" class="delivery-and-payment-section-img img-fluid" /> {/* Added img-fluid */}
+                    </div>
+                    <div class="col-12 col-md-7 order-2 order-md-1">
+                        <h1 class="delivery-and-payment-section-heading">
+                            Delivery and Payment
+                        </h1>
+                        <p class="delivery-and-payment-section-description">
+                            Enjoy hassle-free payment with the plenitude of payment options available for you. Get live tracking and locate your food on a live map. It's quite a sight to see your food arrive to your door. Plus, you get a 5% discount on every order every time you pay online.
+                        </p>
+                        
+                        <button class="custom-button" onclick="scrollToSection('exploreMenuSection')">Order Now</button>
+                        <div class="mt-4"> 
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/visa-card-img.png" alt="Visa Card" class="payment-card-img" />
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/master-card-img.png" alt="Master Card" class="payment-card-img" />
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/paypal-card-img.png" alt="PayPal" class="payment-card-img" />
+                            <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/american-express-img.png" alt="American Express" class="payment-card-img" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <footer class="footer-section pt-5 pb-5"> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img src="https://cdn-icons-png.freepik.com/256/12709/12709809.png?uid=R185085967&ga=GA1.1.1334335634.1738134770&semt=ais_hybrid" alt="Food Munch Footer Logo" class="food-munch-logo" />
+                        <p class="footer-section-mail-id">orderfood@foodmunch.com</p>
+                        <p class="footer-section-address">
+                            123 Ayur Vigyan Nagar, New Delhi, India.
+                        </p>
+                        {/* Add social media icons here if desired */}
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div> {/* End of padding-top wrapper */}
+
+    <script>
+        // Simple smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                // Calculate offset needed due to fixed navbar
+                const navbarHeight = document.querySelector('.navbar.fixed-top')?.offsetHeight || 70; // Get navbar height or default
+                const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                window.scrollTo({
+                    top: sectionTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        
+    </script>
+
+</body>
+</html>

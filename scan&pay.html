@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scan and Pay</title>
+  
+  <!-- Bootstrap & Fonts -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet"/>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+  <style>
+    * {
+      font-family: "Tektur", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    .payment-container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .qr-code {
+      margin: 20px 0;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .a1 {
+      height: 250px;
+      width: 250px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .a2{
+        display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="payment-container">
+    <h2>Scan and Pay</h2>
+    <p>Total Amount: <strong id="totalAmount">Rs. 0</strong></p>
+
+    <!-- Static QR image or fallback -->
+    <img src="images/payment_qr.jpeg" alt="Static QR Code" class="a1" />
+
+    <!-- Generated QR Code -->
+    <div id="qrcode" class="qr-code"></div>
+
+    <!-- Payment Links -->
+    <a href="https://www.phonepe.com/" target="_blank" class="btn btn-success">Pay Now</a>
+    <button onclick="window.location.href='Homepage.html'">Go Back</button>
+    <button onclick="window.location.href='deliverypage.html'" id="deliveryDetailsBtn" class="a2">Delivery Details</button>
+
+    <!-- Confirm Payment -->
+    <button class="btn btn-success mt-3" onclick="confirmPayment()">Confirm Payment</button>
+
+    <!-- File Upload -->
+    <div class="mt-3">
+      <label for="paymentProof">Upload Payment Proof:</label><br/>
+      <input type="text" id="paymentProof" placeholder="UTR ID"  required/>
+    </div>
+  </div>
+
+  <script>
+    function getCartTotal() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    }
+  
+    function generateQRCode() {
+      let total = getCartTotal();
+      document.getElementById("totalAmount").innerText = "Rs. " + total;
+  
+      let qrData = "upi://pay?pa=your-merchant-upi-id@bank&pn=YourMerchantName&mc=1234&tid=txn12345&tr=order123&tn=Order Payment&am=" + total + "&cu=INR";
+  
+      document.getElementById("qrcode").innerHTML = "";
+      new QRCode(document.getElementById("qrcode"), {
+        text: qrData,
+        width: 200,
+        height: 200
+      });
+    }
+  
+    function confirmPayment() {
+  const utrId = document.getElementById("paymentProof").value.trim();
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (utrId === "") {
+    alert("Please enter your UTR ID before confirming payment.");
+    return;
+  }
+
+  // Send cart + UTR ID to PHP
+  fetch("save_order.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cart, utrId })
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(data);
+    // Redirect or show delivery details
+    document.getElementById("deliveryDetailsBtn").style.display = "inline-block";
+    localStorage.removeItem("cart"); // Clear cart after order
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Something went wrong. Try again.");
+  });
+}
+  
+    document.addEventListener("DOMContentLoaded", generateQRCode);
+  </script>
+  
+
+  
+</body>
+</html>

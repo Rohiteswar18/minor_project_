@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Order Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/maps" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+*{
+  font-family: "Tektur", sans-serif;
+}
+h1, h2 {
+    color: #333;
+}
+
+#map {
+    height: 400px;
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+
+    <h1>Live Order Tracking</h1>
+    <h2>Status: <span id="order-status">Order Packed</span></h2>
+
+    <div id="map">
+        <img src=""/>
+    </div>
+
+    <a href="scan&pay.html"><button onclick="goBack()">Back to Home</button></a>
+    <button class="btn btn-info "><a href="MyOrders.php">🔐 View bags Password 🔐</a></button>
+
+    <script>
+        let statuses = ["order is packing in wareHouse","Order Packed", "Out for Delivery", "order at Door Step"];
+        let currentIndex = 0;
+        let map, marker;
+        let deliveryPath = [
+            { lat: 37.7749, lng: -122.4194 }, // Start (Warehouse)
+            { lat: 37.7849, lng: -122.4094 }, // Midpoint 1
+            { lat: 37.7949, lng: -122.3994 }  // Destination (User Location)
+        ];
+        let currentStep = 0;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: deliveryPath[0],
+                zoom: 14,
+            });
+
+            marker = new google.maps.Marker({
+                position: deliveryPath[0],
+                map: map,
+                title: "Delivery Vehicle"
+            });
+
+            updateOrderStatus();
+        }
+
+        function updateOrderStatus() {
+            if (currentIndex < statuses.length) {
+                document.getElementById("order-status").innerText = statuses[currentIndex];
+                localStorage.setItem("orderStatus", statuses[currentIndex]);
+                currentIndex++;
+            }
+
+            if (currentStep < deliveryPath.length) {
+                marker.setPosition(deliveryPath[currentStep]);
+                map.panTo(deliveryPath[currentStep]);
+                currentStep++;
+            }
+        }
+
+        setInterval(updateOrderStatus, 5000); // Update every 5 seconds
+
+        function goBack() {
+            window.location.href = "Homepage.html";
+        }
+    </script>
+
+</body>
+</html>
