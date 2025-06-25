@@ -1,33 +1,38 @@
-name: Python Tests
+name: Python Tests and Syntax Check
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.11]
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.11
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          pip install pytest
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
 
-      - name: Debug test discovery
-        run: |
-          echo "Checking which tests pytest can discover..."
-          pytest --collect-only -q || true
+    - name: Check for syntax errors
+      run: |
+        echo "Compiling Python files to check for syntax errors..."
+        python -m compileall .
 
-      - name: Run tests
-        run: |
-          pytest tests/ || echo "No tests were collected. Please check file names and function names."
+    - name: Run tests
+      run: |
+        pytest
