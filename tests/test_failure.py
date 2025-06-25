@@ -1,4 +1,3 @@
-# tests/test_failure.py
+def test_wrong():
+    assert 1 == 2  # Fails on purpose
 
-def test_failing_math():
-    assert 2 + 2 == 5  # ❌ this will fail
