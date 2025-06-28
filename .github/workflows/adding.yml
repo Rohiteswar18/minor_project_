@@ -25,7 +25,8 @@ jobs:
 
     - name: Run Java program
       run: java add
-- name: Compile Java program
+      
+    - name: Compile Java program
       run: javac sub.java
 
     - name: Run Java program
